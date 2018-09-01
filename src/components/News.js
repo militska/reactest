@@ -1,21 +1,37 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {render} from 'react-dom'
 
-function News(props) {
-    const {newsItem} = props,
-        body = <section>{newsItem.text}</section>,
-        title = <h2> {newsItem.title} </h2>,
-        dateCreate = newsItem.date;
 
+class News extends Component {
 
-    return (
-        <div>
-            {title}
-            {body}
-            <h3> create date: {dateCreate} </h3>
-        </div>
+    constructor(props) {
+        super(props);
 
-    );
+        this.state = {
+            isOpen: true
+        }
+    }
+
+    render() {
+        const {newsItem} = this.props,
+            body = this.state.isOpen && <section>{newsItem.text}</section>,
+            title = <h2> {newsItem.title} </h2>,
+            dateCreate = newsItem.date;
+
+        return (
+            <div>
+                {title}
+                <button onClick={this.handleClick}> {this.state.isOpen ? "Скрыть" : "Показать"}</button>
+                {body}
+                <h3> create date: {dateCreate} </h3>
+            </div>
+
+        );
+    }
+
+    handleClick = () => {
+        this.setState({isOpen: !this.state.isOpen})
+    }
 }
 
 export default News
