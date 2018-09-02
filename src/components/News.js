@@ -4,28 +4,29 @@ import {render} from 'react-dom'
 
 class News extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isOpen: true
-        }
-    }
+    state = {isOpen: true};
 
     render() {
-        const {newsItem} = this.props,
-            body = this.state.isOpen && <section>{newsItem.text}</section>,
-            title = <h2> {newsItem.title} </h2>,
-            dateCreate = newsItem.date;
+        const {newsItem} = this.props;
+        const body = this.state.isOpen && <section>{newsItem.text}</section>;
+        const title = newsItem.title;
+        const dateCreate = newsItem.date;
 
         return (
-            <div>
-                {title}
-                <button onClick={this.handleClick}> {this.state.isOpen ? "Скрыть" : "Показать"}</button>
-                {body}
-                <h3> create date: {dateCreate} </h3>
-            </div>
+            <div className="card">
+                <div className="card-header">
+                    <h2>
+                        {title}
+                        <button className="btn btn-primary"
+                                onClick={this.handleClick}> {this.state.isOpen ? "Скрыть" : "Показать"}</button>
+                    </h2>
 
+                </div>
+                <div className="card-body">
+                    <h6 className="card-subtitle text-muted"> create date: {dateCreate} </h6>
+                    {body}
+                </div>
+            </div>
         );
     }
 

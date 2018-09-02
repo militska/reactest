@@ -1,13 +1,16 @@
 import React from 'react'
 import {render} from 'react-dom'
-import News from './News'
+import NewsList from './NewsList/index'
 import NewsRaw from './rawData'
 
 function App() {
     return (
-        <div>
-            <h1> News </h1>
-            <News newsItem = {NewsRaw[0]}/>
+        <div className="container">
+            <div className="jumbotron">
+                <h1 className="display-3"> News </h1>
+            </div>
+
+            <NewsList newsList={NewsRaw}/>
         </div>
     );
 }
